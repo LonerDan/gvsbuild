@@ -1,0 +1,24 @@
+From 35ec5c0a206a260eb474c0fafc13d784e5c4fa73 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Daniel=20Br=C3=A1t?= <danek.brat@gmail.com>
+Date: Wed, 21 Jun 2023 18:49:25 +0200
+Subject: [PATCH] gen-public-types.py: force utf-8 encoding when reading files
+
+---
+ src/gen-public-types.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gen-public-types.py b/src/gen-public-types.py
+index e7c4efb9..be54d433 100644
+--- a/src/gen-public-types.py
++++ b/src/gen-public-types.py
+@@ -11,7 +11,7 @@ def main(argv):
+     # Run through the headers fed in to #include them and extract the ADW_TYPE_* macros
+     for header in argv[1:]:
+         print('#include "%s"' % os.path.basename(header))
+-        with open(header, 'r') as file:
++        with open(header, 'r', encoding='utf-8') as file:
+             for line in file:
+                 match = re.search(r'#define {1,}(ADW_TYPE_[A-Z0-9_]{1,}) {1,}.*', line)
+                 if match:
+--
+2.40.1
