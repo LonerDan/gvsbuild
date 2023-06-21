@@ -39,6 +39,9 @@ class Libadwaita(Tarball, Meson):
                 "glib",
                 "gtk4",
             ],
+            patches=[
+                "001-gen-public-types-force-utf8-encoding.patch",
+            ]
         )
         gir = "disabled"
         if self.opts.enable_gi:
